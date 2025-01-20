@@ -2,7 +2,8 @@
     "manifest_version": 3,
     "name": "CF Tags",
     "version": "1.0.0",
-    "description": "",
+    "description": "hide tags",
+    "permissions":["storage","tabs"],
     "action": {
       "browser_style": true,
       "default_title": "CF Tags",
@@ -13,7 +14,7 @@
     },
     "content_scripts": [
       {
-        "matches": ["https://codeforces.com/contest/*/standings*","https://codeforces.com/contest/*/ratings*"],
+        "matches": ["https://codeforces.com/problemset/*/*/*","https://codeforces.com/contest/*/problem/*"],
         "js": ["content.js"]
       }
     ]
