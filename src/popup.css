@@ -1,121 +1,134 @@
-/* General styles */
 html, body {
-    width: 320px;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-  }
-  
-  #popup-container {
-    padding: 15px;
-    background-color: #333;
-    border-radius: 8px;
-    color: #f9f9f9;
-  }
-  
-  #toggle-container {
-    margin-bottom: 20px;
-  }
-  
-  .toggle-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .color-picker {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    font-size: 14px;
-    color: #ccc;
-  }
-  
-  select {
-    width: 80%;
-    padding: 5px;
-    border-radius: 4px;
-    border: 1px solid #555;
-    background-color: #444;
-    color: #fff;
-    font-size: 14px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  /* Toggle switch styles */
-  .switch {
-    position: relative;
-    display: inline-block;
-    width: 34px;
-    height: 20px;
-  }
-  
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: 0.4s;
-    border-radius: 10px;
-  }
-  
-  .slider:before {
-    position: absolute;
-    content: "";
-    height: 14px;
-    width: 14px;
-    left: 3px;
-    bottom: 3px;
-    background-color: white;
-    transition: 0.4s;
-    border-radius: 50%;
-  }
-  
-  input:checked + .slider {
-    background-color: #4caf50;
-  }
-  
-  input:checked + .slider:before {
-    transform: translateX(14px);
-  }
-  
-  /* Dropdown container */
-  .dropdown-container {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .color-preview {
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    border: 1px solid #555;
-  }
-  
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  width: 365px; /* Increased for better usability */
+  height: auto;
+}
+
+#popup-container {
+  padding: 20px;
+  background-color: #252525;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+label {
+  font-size: 14px;
+  color: #bbb;
+}
+
+#user-handle-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#user-handle {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background-color: #333;
+  color: #f0f0f0;
+  font-size: 15px;
+}
+
+#save-user-handle {
+  padding: 8px 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#save-user-handle:hover {
+  background-color: #45a049;
+}
+
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #444;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+.color-picker {
+  margin-bottom: 15px;
+}
+
+select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #555;
+  background-color: #333;
+  color: #f0f0f0;
+  font-size: 14px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}

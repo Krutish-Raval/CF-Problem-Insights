@@ -1,133 +1,77 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="popup.css">
-  <title>Toggle Options</title>
-</head>
-<body>
-  <div id="popup-container">
-    <div id="toggle-container">
-      <div class="toggle-row">
-        <label class="switch">
-          <input type="checkbox" id="toggle-tags">
-          <span class="slider"></span>
-        </label>
-        <span id="toggle-label-tags">Hide Tags</span>
-      </div>
-      <div class="toggle-row">
-        <label class="switch">
-          <input type="checkbox" id="toggle-rating">
-          <span class="slider"></span>
-        </label>
-        <span id="toggle-label-rating">Hide Ratings</span>
-      </div>
-    </div>
-    <div id="color-picker-container">
-      <div class="color-picker">
-        <label for="tag-color-picker">Tag Color:</label>
-        <select id="tag-color-picker">
-          <option value="#ced4da">Grey</option>
-          <option value="#32cd32">Lime Green</option>
-          <option value="#ff4500">Orange Red</option>
-          <option value="#ffa500">Gold</option>
-          <option value="#6a5acd">Slate Blue</option>
-          <option value="#ff1493">Deep Pink</option>
-          <option value="#00ced1">Dark Turquoise</option>
-          <option value="#8b4513">Saddle Brown</option>
-          <option value="#2e8b57">Sea Green</option>
-          <option value="#ff6347">Tomato</option>
-        </select>
-      </div>
-      <div class="color-picker">
-        <label for="rating-color-picker">Rating Color:</label>
-        <select id="rating-color-picker">
-          <option value="#1e90ff">Dodger Blue</option>
-          <option value="#32cd32">Lime Green</option>
-          <option value="#ff4500">Orange Red</option>
-          <option value="#ffa500">Gold</option>
-          <option value="#6a5acd">Slate Blue</option>
-          <option value="#ff1493">Deep Pink</option>
-          <option value="#00ced1">Dark Turquoise</option>
-          <option value="#8b4513">Saddle Brown</option>
-          <option value="#2e8b57">Sea Green</option>
-          <option value="#ff6347">Tomato</option>
-        </select>
-      </div>
-    </div>
-    <button id="save-button">Save</button>
-  </div>
-  <script src="popup.js"></script>
-</body>
-</html> -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="popup.css">
-  <title>Toggle Options</title>
-</head>
-<body>
-  <div id="popup-container">
-    <div id="toggle-container">
-      <div class="toggle-row">
-        <label class="switch">
-          <input type="checkbox" id="toggle-tags">
-          <span class="slider"></span>
-        </label>
-        <span id="toggle-label-tags">Hide Tags</span>
-      </div>
-      <div class="toggle-row">
-        <label class="switch">
-          <input type="checkbox" id="toggle-rating">
-          <span class="slider"></span>
-        </label>
-        <span id="toggle-label-rating">Hide Ratings</span>
-      </div>
-    </div>
-    <div id="color-picker-container">
-      <div class="color-picker">
-        <label for="tag-color-picker">Tag Color:</label>
-        <div class="dropdown-container">
-          <select id="tag-color-picker">
-            <option value="#ced4da">Grey</option>
-            <option value="#32cd32">Lime Green</option>
-            <option value="#ff4500">Orange Red</option>
-            <option value="#ffa500">Gold</option>
-            <option value="#6a5acd">Slate Blue</option>
-            <option value="#ff1493">Deep Pink</option>
-            <option value="#00ced1">Dark Turquoise</option>
-            <option value="#8b4513">Saddle Brown</option>
-            <option value="#2e8b57">Sea Green</option>
-            <option value="#ff6347">Tomato</option>
-          </select>
-          <span class="color-preview" id="tag-color-preview"></span>
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="popup.css">
+     <title>Codeforces Extension</title>
+   </head>
+   <body>
+     <div id="popup-container">
+       <div id="user-handle-container">
+         <label for="user-handle">User Handle:</label>
+         <input type="text" id="user-handle" placeholder="Enter Codeforces handle" />
+         <button id="save-user-handle">Save</button>
+       </div>
+       <div id="toggle-container">
+         <div class="toggle-row">
+           <label class="switch">
+             <input type="checkbox" id="toggle-tags">
+             <span class="slider"></span>
+           </label>
+           <span id="toggle-label-tags">Hide Problem Tags</span>
+         </div>
+         <div class="toggle-row">
+           <label class="switch">
+             <input type="checkbox" id="toggle-rating">
+             <span class="slider"></span>
+           </label>
+           <span id="toggle-label-rating">Hide Problem Ratings</span>
+         </div>
+         <div class="toggle-row">
+          <label class="switch">
+            <input type="checkbox" id="toggle-sort-tags">
+            <span class="slider"></span>
+          </label>
+          <span id="toggle-label-sort-tags">Sort Problem Tags(Question Solved)</span>
         </div>
-      </div>
-      <div class="color-picker">
-        <label for="rating-color-picker">Rating Color:</label>
-        <div class="dropdown-container">
-          <select id="rating-color-picker">
-            <option value="#1e90ff">Dodger Blue</option>
-            <option value="#32cd32">Lime Green</option>
-            <option value="#ff4500">Orange Red</option>
-            <option value="#ffa500">Gold</option>
-            <option value="#6a5acd">Slate Blue</option>
-            <option value="#ff1493">Deep Pink</option>
-            <option value="#00ced1">Dark Turquoise</option>
-            <option value="#8b4513">Saddle Brown</option>
-            <option value="#2e8b57">Sea Green</option>
-            <option value="#ff6347">Tomato</option>
-          </select>
-          <span class="color-preview" id="rating-color-preview"></span>
-        </div>
-      </div>
-    </div>
-    <button id="save-button">Save</button>
-  </div>
-  <script src="popup.js"></script>
-</body>
-</html>
-
+       </div>
+       <div id="color-picker-container">
+         <div class="color-picker">
+           <label for="tag-color-picker">Tag Color:</label>
+           <select id="tag-color-picker">
+             <option value="#ADB5BD">Grey</option>
+             <option value="#32cd32">Lime Green</option>
+             <option value="#ff4500">Orange Red</option>
+             <option value="#ffa500">Gold</option>
+             <option value="#6a5acd">Slate Blue</option>
+             <option value="#ff1493">Deep Pink</option>
+             <option value="#00ced1">Dark Turquoise</option>
+             <option value="#8b4513">Saddle Brown</option>
+             <option value="#2e8b57">Sea Green</option>
+             <option value="#005F73">Blue</option>
+             <option value="#ff6347">Tomato</option>
+           </select>
+         </div>
+         <div class="color-picker">
+           <label for="rating-color-picker">Rating Color:</label>
+           <select id="rating-color-picker">
+             <option value="#1e90ff">Dodger Blue</option>
+             <option value="#32cd32">Lime Green</option>
+             <option value="#ff4500">Orange Red</option>
+             <option value="#ffa500">Gold</option>
+             <option value="#6a5acd">Slate Blue</option>
+             <option value="#ff1493">Deep Pink</option>
+             <option value="#00ced1">Dark Turquoise</option>
+             <option value="#8b4513">Saddle Brown</option>
+             <option value="#2e8b57">Sea Green</option>
+             <option value="#ff6347">Tomato</option>
+           </select>
+         </div>
+       </div>
+       <button id="save-button">Save</button>
+     </div>
+     <script src="popup.js"></script>
+   </body>
+   </html>
+   
