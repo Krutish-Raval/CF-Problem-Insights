@@ -26,10 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
   chrome.storage.local.get("userHandle", (result) => {
     userHandleInput.value = result.userHandle || "";
   });
+  saveUserHandleButton.addEventListener("click", async () => {
+    const userHandle = userHandleInput.value.trim(); // Get the value of the user handle
+    const apiUrl=`https://codeforces.com/api/user.info?handles=${userHandle}&checkHistoricHandles=false`;
+    const response = await fetch(apiUrl);
+    const ifUserHandleExist=await response.json();
 
-  saveUserHandleButton.addEventListener("click", () => {
-    const userHandle = userHandleInput.value.trim();
-    if (userHandle) {
+    if (ifUserHandleExist.status==="OK") {
       chrome.storage.local.set({ userHandle }, () => {
         alert("User handle saved successfully!");
       });

@@ -33,34 +33,22 @@
             }
             const originalBackgroundColor = window.getComputedStyle(tag).backgroundColor;
             tag.style.backgroundColor = normalizedTagColor;
-            tag.style.userSelect = "none"; // Disable text selection
+            tag.style.userSelect = "none";
             tag.style.color = normalizedTagColor;
-            const OriginalTitle = tagBox ? tagBox.getAttribute("title") : null; // Capture the original title
-            
+
             if (tagBox) {
                 tagBox.removeAttribute("title");
             }
-
-            // Add click event listener
             tag.addEventListener("click", () => {
                 const currentBgColor = window.getComputedStyle(tag).backgroundColor;
-
                 if (currentBgColor === normalizedTagColor) {
-                    // Reset to original state
                     tag.style.backgroundColor = originalBackgroundColor;
                     tag.style.userSelect = "";
                     tag.style.color = "black";
-                    // if (tagBox && OriginalTitle) {
-                    //     tagBox.setAttribute("title", OriginalTitle);
-                    // }
                 } else {
-                    // Set background back to tagColor
                     tag.style.backgroundColor = normalizedTagColor;
                     tag.style.userSelect = "none";
                     tag.style.color = normalizedTagColor;
-                    // if (tagBox) {
-                    //     tagBox.removeAttribute("title");
-                    // }
                 }
             });
         });
@@ -69,13 +57,13 @@
 
     const sortTags = async (userHandle) => {
         console.log("User Handle:", userHandle);
-        const apiUrl = `https://codeforces.com/api/user.status?handle=${userHandle}&from=1&count=50000`;
-        console.log("API URL:", apiUrl);
+        const apiUrl = `https://codeforces.com/api/user.status?handle=${userHandle}`;
+        // console.log("API URL:", apiUrl);
         try {
-            console.log("Fetching data from Codeforces API...");
+            // console.log("Fetching data from Codeforces API...");
             const response = await fetch(apiUrl);
             const data = await response.json();
-            console.log("Data:", data);
+            // console.log("Data:", data);
             if (data.status !== "OK") {
                 console.error("Failed to fetch data from Codeforces API.");
                 return;
@@ -83,16 +71,23 @@
 
             const submissions = data.result;
             const tagCount = {};
-            console.log("Submissions:", submissions);
+            // console.log("Submissions:", submissions);
             // Count occurrences of each tag in solved problems
+            const uniqueId = new Set();
             submissions.forEach((submission) => {
                 if (submission.verdict === "OK" && submission.problem.tags) {
-                    submission.problem.tags.forEach((tag) => {
-                        tagCount[tag] = (tagCount[tag] || 0) + 1;
-                    });
+                    const problemId = `${submission.problem.contestId}${submission.problem.index}`;
+                    // console.log(uniqueId.has(problemId));
+                    if (!uniqueId.has(problemId)) {
+                        uniqueId.add(problemId);
+
+                        submission.problem.tags.forEach((tag) => {
+                            tagCount[tag] = (tagCount[tag] || 0) + 1;
+                        });
+                    }
                 }
             });
-
+            // console.log("Tag Count:", tagCount);
             // Collect tags visible on the page
             const tagElements = document.querySelectorAll("span.tag-box");
             const tagDataOnPage = Array.from(tagElements).map((tagElement) => {
@@ -100,13 +95,11 @@
                 return {
                     element: tagElement,
                     tag: tagText,
-                    count: tagCount[tagText] || 0, // Use count from API or default to 0
+                    count: tagCount[tagText] || 0,
                 };
             });
 
-            console.log("Tag Data on Page Before Sorting:", tagDataOnPage);
-
-            // Sort the tags by count in descending order
+            // console.log("Tag Data on Page Before Sorting:", tagDataOnPage);  
             const sortedTags = tagDataOnPage.sort((a, b) => b.count - a.count);
             let i = 0;
             tagElements.forEach((tagElement) => {
@@ -126,19 +119,15 @@
             if (parent) {
                 const originalBackgroundColor = window.getComputedStyle(parent).backgroundColor;
                 parent.style.backgroundColor = normalizedRatingColor;
-                parent.style.userSelect = "none"; // Disable text selection
+                parent.style.userSelect = "none";
                 parent.style.color = normalizedRatingColor;
-
                 parent.addEventListener("click", () => {
                     const currentBgColor = window.getComputedStyle(parent).backgroundColor;
-
                     if (currentBgColor === normalizedRatingColor) {
-                        // Restore original state
                         parent.style.backgroundColor = originalBackgroundColor;
                         parent.style.userSelect = "";
                         parent.style.color = "black";
                     } else {
-                        // Hide again
                         parent.style.backgroundColor = normalizedRatingColor;
                         parent.style.userSelect = "none";
                         parent.style.color = normalizedRatingColor;
@@ -148,22 +137,28 @@
         }
     };
 
+    const estimatedRating = (contestID, index) => {
+        
+    };
+    
     chrome.runtime.onMessage.addListener((obj) => {
-        const { type, userHandle } = obj;
-
+        const { type, userHandle, contestID, index } = obj;
         chrome.storage.local.get(["tagColor", "ratingColor"], (result) => {
             const tagColor = result.tagColor || "black";
             const ratingColor = result.ratingColor || "brown";
-
             if (type === "HIDE_TAGS") {
                 hidingTags(tagColor, userHandle);
-            } else if (type === "HIDE_RATING") {
+            } else if (type === "HIDE_RATING") {    
                 hidingRating(ratingColor);
             }
             else if (type === "SORT_TAGS") {
-                sortTags(userHandle); // Call sortTags function
+                sortTags(userHandle);
+                console.log("Contest ID:", contestID, "Index:", index); // Debugging log
+                estimatedRating(contestID, index); 
             }
-
+            else if (type === "ESTIMATED_RATING") {
+                
+            }
         });
     });
 })();
