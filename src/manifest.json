@@ -1,21 +1,32 @@
 {
-    "manifest_version": 3,
-    "name": "CF Tags",
-    "version": "1.0.0",
-    "description": "hide tags",
-    "permissions":["storage","tabs"],
-    "action": {
-      "browser_style": true,
-      "default_title": "CF Tags",
-      "default_popup": "popup.html"
-    },
-    "background": {
-      "service_worker": "background.js"
-    },
-    "content_scripts": [
-      {
-        "matches": ["https://codeforces.com/problemset/*/*/*","https://codeforces.com/contest/*/problem/*"],
-        "js": ["content.js"]
-      }
-    ]
-  }
+  "manifest_version": 3,
+  "name": "CF Tags",
+  "version": "1.0.0",
+  "description": "hide tags",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "scripting",
+    "storage",
+    "https://clist.by/",
+    "https://codeforces.com/*"
+  ],
+  "action": {
+    "browser_style": true,
+    "default_title": "CF Tags",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "host_permissions": ["https://clist.by/*"],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://codeforces.com/problemset/*/*/*",
+        "https://codeforces.com/contest/*/problem/*"
+      ],
+      "js": ["content.js"]
+    }
+  ]
+}

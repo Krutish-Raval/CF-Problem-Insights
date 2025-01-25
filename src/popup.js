@@ -14,25 +14,28 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleSortTags.checked = result.toggleSortTagsState || false;
   });
   // Load saved states and colors
-  chrome.storage.local.get(["toggleTagsState", "toggleRatingState", "tagColor", "ratingColor"], (result) => {
-    toggleTags.checked = result.toggleTagsState || false;
-    toggleRating.checked = result.toggleRatingState || false;
-    tagColorPicker.value = result.tagColor || "#ced4da";
-    ratingColorPicker.value = result.ratingColor || "#1e90ff";
-    // Update the color previews
-    tagColorPreview.style.backgroundColor = tagColorPicker.value;
-    ratingColorPreview.style.backgroundColor = ratingColorPicker.value;
-  });
+  chrome.storage.local.get(
+    ["toggleTagsState", "toggleRatingState", "tagColor", "ratingColor"],
+    (result) => {
+      toggleTags.checked = result.toggleTagsState || false;
+      toggleRating.checked = result.toggleRatingState || false;
+      tagColorPicker.value = result.tagColor || "#ced4da";
+      ratingColorPicker.value = result.ratingColor || "#1e90ff";
+      // Update the color previews
+      tagColorPreview.style.backgroundColor = tagColorPicker.value;
+      ratingColorPreview.style.backgroundColor = ratingColorPicker.value;
+    }
+  );
   chrome.storage.local.get("userHandle", (result) => {
     userHandleInput.value = result.userHandle || "";
   });
   saveUserHandleButton.addEventListener("click", async () => {
     const userHandle = userHandleInput.value.trim(); // Get the value of the user handle
-    const apiUrl=`https://codeforces.com/api/user.info?handles=${userHandle}&checkHistoricHandles=false`;
+    const apiUrl = `https://codeforces.com/api/user.info?handles=${userHandle}&checkHistoricHandles=false`;
     const response = await fetch(apiUrl);
-    const ifUserHandleExist=await response.json();
+    const ifUserHandleExist = await response.json();
 
-    if (ifUserHandleExist.status==="OK") {
+    if (ifUserHandleExist.status === "OK") {
       chrome.storage.local.set({ userHandle }, () => {
         alert("User handle saved successfully!");
       });
@@ -45,8 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
     preview.style.backgroundColor = picker.value;
   };
 
-  tagColorPicker.addEventListener("change", () => updatePreviewColor(tagColorPicker, tagColorPreview));
-  ratingColorPicker.addEventListener("change", () => updatePreviewColor(ratingColorPicker, ratingColorPreview));
+  tagColorPicker.addEventListener("change", () =>
+    updatePreviewColor(tagColorPicker, tagColorPreview)
+  );
+  ratingColorPicker.addEventListener("change", () =>
+    updatePreviewColor(ratingColorPicker, ratingColorPreview)
+  );
   toggleSortTags.addEventListener("change", () => {
     saveToggleStateAndReload("toggleSortTagsState", toggleSortTags.checked);
   });
@@ -85,4 +92,3 @@ document.addEventListener("DOMContentLoaded", () => {
     saveToggleStateAndReload("toggleRatingState", toggleRating.checked);
   });
 });
-
