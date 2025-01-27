@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "CF Tags",
+  "name": "CF Tag Wizard",
   "version": "1.0.0",
   "description": "Gives Estimated Problem Rating and Hide and Open each and every Tag one by one",
   "icons": {
