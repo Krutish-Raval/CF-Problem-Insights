@@ -7,7 +7,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     (tab.url.includes("https://codeforces.com/problemset/problem") ||
       tab.url.includes("https://codeforces.com/contest/"))
   ) {
-    
+
     chrome.storage.local.get(
       [
         "toggleTagsState",
@@ -22,17 +22,39 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         // https://codeforces.com/problemset/problem/2063/A
         let str1 = tab.url;
         let contestID = "";
-        let index = str1[str1.length - 1];
+        let index = "";
+        if (str1[str1.length - 2] === "/")
+          index = str1[str1.length - 1];
+        else{
+          index = str1[str1.length - 2];
+          index += str1[str1.length - 1];
+        }
         if (tab.url.includes("https://codeforces.com/contest/")) {
+          if(index.length==1){
           contestID += str1[str1.length - 14];
           contestID += str1[str1.length - 13];
           contestID += str1[str1.length - 12];
           contestID += str1[str1.length - 11];
+          }
+          else{
+            contestID += str1[str1.length - 15];
+          contestID += str1[str1.length - 14];
+          contestID += str1[str1.length - 13];
+          contestID += str1[str1.length - 12];
+          }
         } else {
+          if(index.length==1){
           contestID += str1[str1.length - 6];
           contestID += str1[str1.length - 5];
           contestID += str1[str1.length - 4];
           contestID += str1[str1.length - 3];
+          }
+          else{
+            contestID += str1[str1.length - 7];
+          contestID += str1[str1.length - 6];
+          contestID += str1[str1.length - 5];
+          contestID += str1[str1.length - 4];
+          }
         }
         console.log(contestID, index);
         console.log(result);
@@ -40,7 +62,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         const toggleRatingState = result.toggleRatingState || false;
         const toggleSortTagsState = result.toggleSortTagsState || false;
         const toggleEstimatedRatingState =
-          result.toggleEstimatedRatingState || true;
+          result.toggleEstimatedRatingState || false;
         const userHandle = result.userHandle || "";
         if (toggleTagsState) {
           chrome.tabs.sendMessage(tabId, { type: "HIDE_TAGS", userHandle });

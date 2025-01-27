@@ -1,73 +1,98 @@
-   <!DOCTYPE html>
-   <html lang="en">
-   <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="popup.css">
-     <title>Codeforces Extension</title>
-   </head>
-   <body>
-     <div id="popup-container">
-       <div id="user-handle-container">
-         <label for="user-handle">User Handle:</label>
-         <input type="text" id="user-handle" placeholder="Enter Codeforces handle" />
-         <button id="save-user-handle">Save</button>
-       </div>
-       <div id="toggle-container">
-         <div class="toggle-row">
-           <label class="switch">
-             <input type="checkbox" id="toggle-tags">
-             <span class="slider"></span>
-           </label>
-           <span id="toggle-label-tags">Hide Problem Tags</span>
-         </div>
-         <div class="toggle-row">
-           <label class="switch">
-             <input type="checkbox" id="toggle-rating">
-             <span class="slider"></span>
-           </label>
-           <span id="toggle-label-rating">Hide Problem Ratings</span>
-         </div>
-         <div class="toggle-row">
-          <label class="switch">
-            <input type="checkbox" id="toggle-sort-tags">
-            <span class="slider"></span>
-          </label>
-          <span id="toggle-label-sort-tags">Sort Problem Tags(Question Solved)</span>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="popup.css" />
+      <title>Codeforces Extension</title>
+    </head>
+    <body>
+      <div id="popup-container">
+        <!-- Extension Header -->
+        <div id="extension-header">
+          <img src="icon/CFTagWizardTitle.png" alt="Extension Icon" id="extension-icon" />
+          <h1 id="extension-title">CF Tag Wizard</h1>
         </div>
-       </div>
-       <div id="color-picker-container">
-         <div class="color-picker">
-           <label for="tag-color-picker">Tag Color:</label>
-           <select id="tag-color-picker">
-             <option value="#1e90ff">Dodger Blue</option>
-             <option value="#ff4500">Orange Red</option>
-             <option value="#ffa500">Gold</option>
-             <option value="#6a5acd">Slate Blue</option>
-             <option value="#00ced1">Dark Turquoise</option>
-             <option value="#8b4513">Saddle Brown</option>
-             <option value="#2e8b57">Sea Green</option>
-             <option value="#005F73">Blue</option>
-             <option value="#ff6347">Tomato</option>
-           </select>
-         </div>
-         <div class="color-picker">
-           <label for="rating-color-picker">Rating Color:</label>
-           <select id="rating-color-picker">
-             <option value="#1e90ff">Dodger Blue</option>
-             <option value="#ff4500">Orange Red</option>
-             <option value="#ffa500">Gold</option>
-             <option value="#6a5acd">Slate Blue</option>
-             <option value="#00ced1">Dark Turquoise</option>
-             <option value="#8b4513">Saddle Brown</option>
-             <option value="#2e8b57">Sea Green</option>
-             <option value="#ff6347">Tomato</option>
-           </select>
-         </div>
-       </div>
-       <button id="save-button">Save</button>
-     </div>
-     <script src="popup.js"></script>
-   </body>
-   </html>
-   
+        <hr />
+  
+        <!-- User Handle Input -->
+        <div id="user-handle-container">
+          <label for="user-handle">User Handle:</label>
+          <input
+            type="text"
+            id="user-handle"
+            placeholder="Enter Codeforces handle"
+          />
+          <button id="save-user-handle">Save</button>
+        </div>
+  
+        <!-- Toggles -->
+        <div id="toggle-container">
+          <div class="toggle-row">
+            <label class="switch">
+              <input type="checkbox" id="toggle-tags" />
+              <span class="slider"></span>
+            </label>
+            <span id="toggle-label-tags">Hide Problem Tags</span>
+          </div>
+          <div class="toggle-row">
+            <label class="switch">
+              <input type="checkbox" id="toggle-rating" />
+              <span class="slider"></span>
+            </label>
+            <span id="toggle-label-rating">Hide Problem Ratings</span>
+          </div>
+          <div class="toggle-row">
+            <label class="switch">
+              <input type="checkbox" id="toggle-sort-tags" />
+              <span class="slider"></span>
+            </label>
+            <span id="toggle-label-sort-tags">Sort Problem Tags (Most Tags Solved)</span>
+          </div>
+          <div class="toggle-row">
+            <label class="switch">
+              <input type="checkbox" id="toggle-estimated-rating" />
+              <span class="slider"></span>
+            </label>
+            <span id="toggle-label-estimated-rating">Enable Estimated Problem Rating (CLIST)</span>
+          </div>
+        </div>
+  
+        <!-- Color Pickers -->
+        <div id="color-picker-container">
+          <div class="color-picker">
+            <label for="tag-color-picker">Tag Color:</label>
+            <div class="dropdown-container">
+              <select id="tag-color-picker">
+                <option value="#ffa500">Gold</option>
+                <option value="#2e8b57">Sea Green</option>
+                <option value="#005F73">Deep Teal Blue</option>
+                <option value="#3B5998">Facebook Blue</option>
+                <option value="#a3a3a3" selected>Silver Gray</option>
+                <option value="#F5FFFA">Mint Cream</option>
+                <option value="#F0F8FF">Blue-Gray</option>
+              </select>
+              <div id="tag-color-preview" class="color-preview" style="background-color: #a3a3a3;"></div>
+            </div>
+          </div>
+          <div class="color-picker">
+            <label for="rating-color-picker">Rating Color:</label>
+            <div class="dropdown-container">
+              <select id="rating-color-picker">
+                <option value="#ffa500">Gold</option>
+                <option value="#2e8b57">Sea Green</option>
+                <option value="#3B5998" selected>Facebook Blue</option>
+                <option value="#a3a3a3">Silver Gray</option>
+                <option value="#F5FFFA">Mint Cream</option>
+                <option value="#475569">Blue-Gray</option>
+              </select>
+              <div id="rating-color-preview" class="color-preview" style="background-color: #3B5998;"></div>
+            </div>
+          </div>
+        </div>
+        <button id="save-button">Save</button>
+      </div>
+      <script src="popup.js"></script>
+    </body>
+  </html>
+  

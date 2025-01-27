@@ -2,7 +2,12 @@
   "manifest_version": 3,
   "name": "CF Tags",
   "version": "1.0.0",
-  "description": "hide tags",
+  "description": "Gives Estimated Problem Rating and Hide and Open each and every Tag one by one",
+  "icons": {
+    "16": "icon/CFTagWizard16.png",
+    "32": "icon/CFTagWizard32.png",
+    "48": "icon/CFTagWizard48.png"
+  },
   "permissions": [
     "activeTab",
     "tabs",
@@ -11,9 +16,11 @@
     "https://clist.by/",
     "https://codeforces.com/*"
   ],
+  
   "action": {
     "browser_style": true,
-    "default_title": "CF Tags",
+    "default_icon": "icon/CFTagWizard128.png",
+    "default_title": "CF Tag Wizard",
     "default_popup": "popup.html"
   },
   "background": {

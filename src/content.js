@@ -102,7 +102,11 @@
       const sortedTags = tagDataOnPage.sort((a, b) => b.count - a.count);
       let i = 0;
       tagElements.forEach((tagElement) => {
-        tagElement.textContent = `${sortedTags[i].tag} (${sortedTags[i].count})`;
+        if (tagElement.getAttribute("title") !== "Difficulty") {
+          tagElement.textContent = `${sortedTags[i].tag} (${sortedTags[i].count})`;
+        } else {
+          tagElement.textContent = `${sortedTags[i].tag}`;
+        }
         i++;
       });
     } catch (error) {
@@ -141,7 +145,7 @@
     }
   };
 
-  const fetchRatingFromClist = (contestID) => {
+  const fetchRatingFromClist = (contestID, index) => {
     return new Promise((resolve, reject) => {
       chrome.runtime.sendMessage(
         { type: "FETCH_CLIST", contestID },
@@ -150,8 +154,26 @@
             const parser = new DOMParser();
             const doc = parser.parseFromString(response.html, "text/html");
             const rows = doc.querySelectorAll("span.coder-color");
-            const ratings = Array.from(rows).map((row) => row.textContent.trim());
-            resolve(ratings);
+            const ratings = Array.from(rows).map((row) =>
+              row.textContent.trim()
+            );
+            let len = ratings.length;
+            const indexCol = [];
+            let rate = null;
+            const col = doc.querySelectorAll("span.nowrap");
+            let i = 0;
+            col.forEach((row) => {
+              const link = row.querySelectorAll("a");
+              link.forEach((row1) => {
+                let temp = row1.getAttribute("href");
+                if (temp.includes(index)) {
+                  rate = ratings[i];
+                }
+              });
+              i++;
+            });
+            console.log("Rating:", rate);
+            resolve(rate);
           } else {
             reject(response.error);
           }
@@ -159,74 +181,30 @@
       );
     });
   };
-  
-  // Example usage of the fetchRatingFromClist function
+
   const estimatedRatingFunc = async (contestID, index) => {
     try {
-      const ratings = await fetchRatingFromClist(contestID);
-      if (ratings.length > 0) {
-        const problemIndex = index.charCodeAt(0) - 65;
-        const estimatedRating = ratings[problemIndex] || "Not Found";
-        console.log(`Estimated Rating for problem ${contestID}${index}: ${estimatedRating}`);
-        console.log(`Estimated Rating for problem ${contestID}${index}: ${estimatedRating}`);
-      // const tagsContainer = document.querySelector(
-      //   "div.roundbox.sidebox.sidebar-menu.borderTopRound"
-      // );
+      const ratings = await fetchRatingFromClist(contestID, index);
+      // if (ratings != null) {
+      // const problemIndex = index.charCodeAt(0) - 65;
+      const estimatedRating = ratings || "N/A";
+      console.log(
+        `Estimated Rating for problem ${contestID}${index}: ${estimatedRating}`
+      );
 
-      // if (tagsContainer) {
-      //   // Create a new div element to hold the estimated rating and button
-      //   let ratingDiv = tagsContainer.previousElementSibling; // Check if there's an element before the tags container
-
-      //   // If it doesn't exist, create a new one
-      //   if (!ratingDiv || !ratingDiv.classList.contains("estimated-rating-container ")) {
-      //     ratingDiv = document.createElement("div");
-      //     ratingDiv.classList.add("estimated-rating-container");
-      //     ratingDiv.style.display = "flex";
-      //     ratingDiv.style.alignItems = "center";
-      //     ratingDiv.style.marginBottom = "10px";
-
-      //     // Add the container before the tagsContainer
-      //     tagsContainer.parentNode.insertBefore(ratingDiv, tagsContainer);
-      //   }
-
-      //   // Create the estimated rating text
-      //   const ratingText = document.createElement("span");
-      //   ratingText.classList.add("estimated-rating-text caption");
-      //   ratingText.textContent = `Estimated Rating: ${estimatedRating}`;
-      //   ratingText.style.color = "blue";
-      //   ratingText.style.fontWeight = "bold";
-      //   ratingText.style.marginRight = "10px";
-
-      //   // Create the toggle button
-      //   const toggleButton = document.createElement("button");
-      //   toggleButton.textContent = "Estimated Rating";
-      //   toggleButton.style.backgroundColor = "#007bff";
-      //   toggleButton.style.color = "white";
-      //   toggleButton.style.border = "none";
-      //   toggleButton.style.borderRadius = "4px";
-      //   toggleButton.style.padding = "5px 10px";
-      //   toggleButton.style.cursor = "pointer";
-
-      //   // Add click event to toggle visibility of the rating
-      //   toggleButton.addEventListener("click", () => {
-      //     const isHidden = ratingText.style.display === "none";
-      //     ratingText.style.display = isHidden ? "inline" : "none";
-      //   });
-
-      //   // Clear any existing content in the container and append the new elements
-      //   ratingDiv.innerHTML = "";
-      //   ratingDiv.appendChild(ratingText);
-      //   ratingDiv.appendChild(toggleButton);
-      // }
-
-      const tagsContainer = document.querySelector("div.roundbox.sidebox.sidebar-menu.borderTopRound");
+      const tagsContainer = document.querySelector(
+        "div.roundbox.sidebox.sidebar-menu.borderTopRound"
+      );
 
       if (tagsContainer) {
         // Create a new div element to hold the estimated rating and button
         let ratingDiv = tagsContainer.previousElementSibling; // Check if there's an element before the tags container
-      
+
         // If it doesn't exist or doesn't have the correct class, create a new one
-        if (!ratingDiv || !ratingDiv.classList.contains("estimated-rating-container")) {
+        if (
+          !ratingDiv ||
+          !ratingDiv.classList.contains("estimated-rating-container")
+        ) {
           ratingDiv = document.createElement("div");
           ratingDiv.classList.add("estimated-rating-container", "caption");
           ratingDiv.style.border = "1px solid #ccc";
@@ -237,53 +215,50 @@
           ratingDiv.style.justifyContent = "start";
           ratingDiv.style.backgroundColor = "white";
           ratingDiv.style.borderRadius = "5px";
-      
-          // Add the container before the tagsContainer
           tagsContainer.parentNode?.insertBefore(ratingDiv, tagsContainer);
         }
 
         /**
           verdana,arial,sans-serif
-              color: #3B5998;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0.2em 0;
-    position: relative; 
-
-
+          color: #3B5998;
+          font-size: 1.5rem;
+          font-weight: bold;
+          margin: 0.2em 0;
+          position: relative; 
          */
-      
+
         // Create the toggle button
         const toggleButton = document.createElement("button");
-        toggleButton.innerHTML = "→ <span class='rating-text'>Estimated Rating</span>";
+        toggleButton.innerHTML =
+          "→ <span class='rating-text'>Estimated Rating</span>";
         toggleButton.style.backgroundColor = "#fff";
         toggleButton.style.color = "#3B5998";
         toggleButton.style.border = "1px";
         toggleButton.style.borderColor = "black";
         toggleButton.style.borderRadius = "4px";
-        toggleButton.style.padding = "5px 0px 5px 6px";
+        toggleButton.style.padding = "10px 0px 10px 6px";
         toggleButton.style.cursor = "pointer";
         toggleButton.style.fontFamily = "verdana,arial,sans-serif";
         toggleButton.style.fontSize = "1.5rem";
         toggleButton.style.fontWeight = "bold";
         toggleButton.style.transition = "background-color 0.3s";
         toggleButton.addEventListener("mouseover", () => {
-          const ratingText = toggleButton.querySelector('.rating-text');
+          const ratingText = toggleButton.querySelector(".rating-text");
           ratingText.style.textDecoration = "underline";
         });
         toggleButton.addEventListener("mouseout", () => {
-          const ratingText = toggleButton.querySelector('.rating-text');
+          const ratingText = toggleButton.querySelector(".rating-text");
           ratingText.style.textDecoration = "none";
         });
-      
+
         // Create the rating text container
         const ratingTextContainer = document.createElement("div");
         ratingTextContainer.style.marginLeft = "10px";
         ratingTextContainer.style.overflow = "hidden";
         ratingTextContainer.style.transition = "max-width 0.3s ease-out";
-        ratingTextContainer.style.maxWidth = "0"; // Initially hidden
+        ratingTextContainer.style.maxWidth = "0";
         ratingTextContainer.style.whiteSpace = "nowrap";
-      
+
         // Create the rating text
         const ratingText = document.createElement("span");
         ratingText.textContent = `: ${estimatedRating}`;
@@ -292,30 +267,51 @@
         ratingText.style.fontWeight = "bold";
         ratingText.style.fontSize = "1.5rem";
         ratingText.style.margin = "0px 0px 0px -2px";
-      
+
         ratingTextContainer.appendChild(ratingText);
-      
+
         // Add click event to toggle visibility of the rating
         toggleButton.addEventListener("click", () => {
           const isHidden = ratingTextContainer.style.maxWidth === "0px";
           ratingTextContainer.style.maxWidth = isHidden ? "150px" : "0px";
         });
-      
+
         // Clear any existing content in the container and append the new elements
         ratingDiv.innerHTML = "";
         ratingDiv.appendChild(toggleButton);
         ratingDiv.appendChild(ratingTextContainer);
+        const clistNote = document.createElement("a");
+        clistNote.textContent = "CLIST RATING";
+
+        // Styling the note
+        clistNote.style.position = "absolute"; // Position relative to the parent container
+        clistNote.style.bottom = "5px"; // Position 5px from the bottom
+        clistNote.style.right = "10px"; // Position 10px from the right
+        clistNote.style.color = "#777"; // Subtle gray color for text
+        clistNote.style.fontSize = "0.8rem"; // Small font size
+        clistNote.style.fontFamily = "verdana, arial, sans-serif"; // Less bold font family
+        clistNote.style.fontWeight = "normal"; // Reduce boldness
+        clistNote.style.textDecoration = "none"; // Remove underlining
+        clistNote.style.pointerEvents = "auto"; // Allow interaction with the link
+        clistNote.href = `https://clist.by/problems/?search=${contestID}&resource=1`; // Corrected URL
+        clistNote.target = "_blank"; // Open in a new tab
+        // Ensure the parent container is positioned relative
+        ratingDiv.style.position = "relative";
+
+        // Append the note to the container
+        // ratingDiv.appendChild(clistNote);
+
+        ratingDiv.appendChild(clistNote);
       }
-      
-      } else {
-        console.warn(`No ratings found for problem ${contestID}${index}`);
-      }
+
+      // else {
+      //   console.warn(`No ratings found for problem ${contestID}${index}`);
+      // }
     } catch (error) {
       console.error("Error in estimatedRating:", error);
     }
   };
-  
-  
+
   chrome.runtime.onMessage.addListener((obj) => {
     const { type, userHandle, contestID, index } = obj;
     chrome.storage.local.get(["tagColor", "ratingColor"], (result) => {
@@ -327,7 +323,6 @@
         hidingRating(ratingColor);
       } else if (type === "SORT_TAGS") {
         sortTags(userHandle);
-        
       } else if (type === "ESTIMATED_RATING") {
         console.log("Contest ID:", contestID, "Index:", index); // Debugging log
         estimatedRatingFunc(contestID, index);
