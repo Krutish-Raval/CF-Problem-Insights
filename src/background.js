@@ -1,3 +1,17 @@
+
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.storage.local.set({
+    toggleTagsState: true, // Default: Hide Problem Tags
+    toggleRatingState: true, // Default: Hide Problem Ratings
+    toggleSortTagsState: false, // Default: Sort Problem Tags
+    toggleEstimatedRatingState: true, // Default: Enable Estimated Problem Rating
+    tagColor: "#a3a3a3", 
+    ratingColor: "#3B5998", 
+    userHandle: "" // Default: No user handle set
+  }, () => {
+    console.log("Default settings have been initialized.");
+  });
+});
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
   console.log("onUpdated", tabId, changeInfo, tab);
   console.log("URL:", tab.url);
@@ -113,4 +127,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     // Indicate that we will send a response asynchronously
     return true;
   }
+
+ 
 });

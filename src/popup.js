@@ -34,13 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
     toggleEstimatedRating.checked = result.toggleEstimatedRatingState || false;
   });
   // Save settings when toggles are updated
-  
+  let check;
   saveUserHandleButton.addEventListener("click", async () => {
     const userHandle = userHandleInput.value.trim(); // Get the value of the user handle
     const apiUrl = `https://codeforces.com/api/user.info?handles=${userHandle}&checkHistoricHandles=false`;
     const response = await fetch(apiUrl);
     const ifUserHandleExist = await response.json();
-
+    check=ifUserHandleExist;
     if (ifUserHandleExist.status === "OK") {
       chrome.storage.local.set({ userHandle }, () => {
         alert("User handle saved successfully!");
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
       () => {
         // Reload the active tab
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-          if (tabs.length > 0 && (tabs[0].url.includes("https://codeforces.com/problemset/problem") ||tabs[0].url.includes("https://codeforces.com/contest/") )) {
+          if (tabs.length > 0 && (tabs[0].url.includes("https://codeforces.com/problemset/problem") || tabs[0].url.includes("https://codeforces.com/contest/") )) {
             chrome.tabs.reload(tabs[0].id);
           }
         });
@@ -84,8 +84,18 @@ document.addEventListener("DOMContentLoaded", () => {
     updatePreviewColor(ratingColorPicker, ratingColorPreview)
   );
   toggleSortTags.addEventListener("change", () => {
-    saveToggleStateAndReload("toggleSortTagsState", toggleSortTags.checked);
+    chrome.storage.local.get("userHandle", (result) => {
+      const userHandle = result.userHandle;
+      if (userHandle) {
+        // If user handle is provided, save toggle state and reload the tab
+        saveToggleStateAndReload("toggleSortTagsState", toggleSortTags.checked);
+      } else {
+        // If user handle is not provided, show an alert
+        alert("Please enter a valid Codeforces handle to sort tags.");
+      }
+    });
   });
+  
   
   // Save button logic
   saveButton.addEventListener("click", () => {
@@ -105,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveToggleStateAndReload = (key, state) => {
     chrome.storage.local.set({ [key]: state }, () => {
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        if (tabs.length > 0) {
+        if ((tabs.length > 0) && (tabs[0].url.includes("https://codeforces.com/problemset/problem") ||tabs[0].url.includes("https://codeforces.com/contest/") )) {
           chrome.tabs.reload(tabs[0].id);
         }
       });
@@ -121,7 +131,5 @@ document.addEventListener("DOMContentLoaded", () => {
     saveToggleStateAndReload("toggleRatingState", toggleRating.checked);
   });
   
-
- 
 
 });

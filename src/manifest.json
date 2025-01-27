@@ -1,12 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "CF Tag Wizard",
+  "name": "CF Problem Insights",
   "version": "1.0.0",
   "description": "Gives Estimated Problem Rating and Hide and Open each and every Tag one by one",
   "icons": {
-    "16": "icon/CFTagWizard16.png",
-    "32": "icon/CFTagWizard32.png",
-    "48": "icon/CFTagWizard48.png"
+    "16": "icon/CFProblemInsights16.png",
+    "32": "icon/CFProblemInsights32.png",
+    "48": "icon/CFProblemInsights48.png"
   },
   "permissions": [
     "activeTab",
@@ -19,7 +19,7 @@
   
   "action": {
     "browser_style": true,
-    "default_icon": "icon/CFTagWizard128.png",
+    "default_icon": "icon/CFProblemInsights128png.png",
     "default_title": "CF Tag Wizard",
     "default_popup": "popup.html"
   },

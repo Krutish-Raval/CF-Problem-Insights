@@ -1,142 +1,3 @@
-/* html, body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-  background-color: #1e1e1e;
-  color: #f0f0f0;
-  width: 365px;
-  height: auto;
-}
-
-#popup-container {
-  padding: 20px;
-  background-color: #252525;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-label {
-  font-size: 14px;
-  color: #bbb;
-}
-
-#user-handle-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-#user-handle {
-  flex: 1;
-  padding: 10px;
-  border-radius: 6px;
-  border: 1px solid #555;
-  background-color: #333;
-  color: #f0f0f0;
-  font-size: 15px;
-}
-
-#save-user-handle {
-  padding: 8px 16px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-#save-user-handle:hover {
-  background-color: #45a049;
-}
-
-.toggle-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 12px;
-  font-size: 15px;
-}
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 40px;
-  height: 20px;
-}
-
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #444;
-  transition: 0.4s;
-  border-radius: 20px;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  left: 2px;
-  bottom: 2px;
-  background-color: white;
-  transition: 0.4s;
-  border-radius: 50%;
-}
-
-input:checked + .slider {
-  background-color: #4caf50;
-}
-
-input:checked + .slider:before {
-  transform: translateX(20px);
-}
-
-.color-picker {
-  margin-bottom: 15px;
-}
-
-select {
-  width: 100%;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #555;
-  background-color: #333;
-  color: #f0f0f0;
-  font-size: 14px;
-}
-
-button {
-  width: 100%;
-  padding: 12px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-#save-button {
-  margin-top: 10px;
-}
- */
  html, body {
   margin: 0;
   padding: 0;
@@ -203,6 +64,7 @@ label {
   display: inline-block;
   width: 40px;
   height: 20px;
+  vertical-align: middle;
 }
 
 .switch input {
@@ -242,7 +104,9 @@ input:checked + .slider {
 input:checked + .slider:before {
   transform: translateX(20px);
 }
-
+span {
+  word-break: break-word; /* Prevents overflow from long text */
+}
 .color-picker {
   margin-bottom: 15px;
 }
@@ -255,6 +119,7 @@ select {
   background-color: #333;
   color: #f0f0f0;
   font-size: 14px;
+  cursor: pointer;
 }
 
 button {
@@ -304,7 +169,7 @@ button:hover {
 } 
 
 #extension-title {
-  font-size: 30px; /* Larger font to align with the image size */
+  font-size: 25px; /* Larger font to align with the image size */
   font-weight: bold;
   color: #f0f0f0;
   margin: 0;
@@ -316,4 +181,15 @@ hr {
   border: none;
   border-top: 1px solid #444;
   margin: 8px 0; /* Reduced margin */
+}
+.inline-labels {
+  display: flex;
+  align-items: center;
+   /* Space between "Enable Estimated Problem Rating" and "(CLIST)" */
+
+}
+
+
+#para{
+  font-size:12px
 }

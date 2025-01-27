@@ -30,6 +30,7 @@
       if (tagBox && tagBox.getAttribute("title") === "Difficulty") {
         return;
       }
+      tag.style.cursor = "pointer"; 
       const originalBackgroundColor =
         window.getComputedStyle(tag).backgroundColor;
       tag.style.backgroundColor = normalizedTagColor;
@@ -56,6 +57,7 @@
 
   const sortTags = async (userHandle) => {
     console.log("User Handle:", userHandle);
+    
     const apiUrl = `https://codeforces.com/api/user.status?handle=${userHandle}`;
     // console.log("API URL:", apiUrl);
     try {
@@ -128,6 +130,7 @@
         parent.style.backgroundColor = normalizedRatingColor;
         parent.style.userSelect = "none";
         parent.style.color = normalizedRatingColor;
+        parent.style.cursor = "pointer"; 
         parent.addEventListener("click", () => {
           const currentBgColor =
             window.getComputedStyle(parent).backgroundColor;
@@ -258,7 +261,7 @@
         ratingTextContainer.style.transition = "max-width 0.3s ease-out";
         ratingTextContainer.style.maxWidth = "0";
         ratingTextContainer.style.whiteSpace = "nowrap";
-
+        
         // Create the rating text
         const ratingText = document.createElement("span");
         ratingText.textContent = `: ${estimatedRating}`;
@@ -267,7 +270,7 @@
         ratingText.style.fontWeight = "bold";
         ratingText.style.fontSize = "1.5rem";
         ratingText.style.margin = "0px 0px 0px -2px";
-
+        
         ratingTextContainer.appendChild(ratingText);
 
         // Add click event to toggle visibility of the rating
@@ -295,6 +298,8 @@
         clistNote.style.pointerEvents = "auto"; // Allow interaction with the link
         clistNote.href = `https://clist.by/problems/?search=${contestID}&resource=1`; // Corrected URL
         clistNote.target = "_blank"; // Open in a new tab
+        clistNote.cursor ="pointer";
+        clistNote.style.marginTop = "15px";
         // Ensure the parent container is positioned relative
         ratingDiv.style.position = "relative";
 
