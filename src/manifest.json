@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "CF Problem Insights",
   "version": "1.0.0",
-  "description": "Gives Estimated Problem Rating and Hide and Open each and every Tag one by one",
+  "description": "Gives Estimated Problem Rating and User can Hide and Open each and every Tag one by one",
   "icons": {
     "16": "icon/CFProblemInsights16.png",
     "32": "icon/CFProblemInsights32.png",
