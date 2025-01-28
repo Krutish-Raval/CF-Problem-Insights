@@ -20,7 +20,7 @@
   "action": {
     "browser_style": true,
     "default_icon": "icon/CFProblemInsights128png.png",
-    "default_title": "CF Tag Wizard",
+    "default_title": "CF Problem Insights",
     "default_popup": "popup.html"
   },
   "background": {
