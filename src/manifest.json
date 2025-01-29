@@ -11,10 +11,7 @@
   "permissions": [
     "activeTab",
     "tabs",
-    "scripting",
-    "storage",
-    "https://clist.by/",
-    "https://codeforces.com/*"
+    "storage"
   ],
   
   "action": {
