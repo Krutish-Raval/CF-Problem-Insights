@@ -8,15 +8,11 @@
     "32": "icon/CFProblemInsights32.png",
     "48": "icon/CFProblemInsights48.png"
   },
-  "permissions": [
-    "activeTab",
-    "tabs",
-    "storage"
-  ],
-  
+  "permissions": ["activeTab","tabs","storage"],
+
   "action": {
     "browser_style": true,
-    "default_icon": "icon/CFProblemInsights128png.png",
+    "default_icon": "icon/codeforceslogo128.png",
     "default_title": "CF Problem Insights",
     "default_popup": "popup.html"
   },
