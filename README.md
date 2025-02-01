@@ -2,7 +2,14 @@
 
 Codeforces Problem Enhancement Extension 🚀
 Enhance your Codeforces practice experience with this powerful browser extension that adds estimated problem ratings and customizable tag visibility controls.
-<img src="icon/CFProblemInsights128png.png" alt="" width="200" height="200">
+
+
+<img src="src/icon/CFProblemInsights128png.png" alt="" width="200" height="200">
+
+
+
+
+
 ✨ Features
 📊 Estimated Problem Ratings
 
@@ -50,9 +57,17 @@ Individual ratings can be revealed separately
 
 🖥️ Screenshots
 Screenshot 1:-
-<img src="icon/everything.png" alt="" width="200" height="200">
+<img src="src/icon/everything.png" alt="" width="200" height="200">
+
+
+
+
 Screenshot 2:-
-<img src="icon/allinone.png" alt="" width="200" height="200">
+
+
+<img src="src/icon/allinone.png" alt="" width="200" height="200">
+
+
 🤝 Contributing
 Contributions are welcome! Here's how you can help:
 
