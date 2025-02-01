@@ -21,10 +21,12 @@ Different color indicators for better visual organization
 Individual tag controls - hide or show specific tags as needed
 
 🎯 Rating Controls
-
+<br>
 Option to hide problem ratings for focused practice
+<br>
 Reveal ratings when you're ready to assess difficulty
-Clean interface integration with Codeforces
+<br>
+clean interface integration with Codeforces
 
 🚀 Installation
 
@@ -37,7 +39,7 @@ The extension will automatically appear in your browser toolbar
 Estimated Ratings
 
 Navigate to any Codeforces problem
-The estimated rating will automatically appear next to the problem title
+The estimated rating will automatically appear below to Problem Tags
 
 Managing Tags
 
