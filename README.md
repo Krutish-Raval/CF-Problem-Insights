@@ -56,18 +56,15 @@ Choose to show or hide all ratings
 Individual ratings can be revealed separately
 
 🖥️ Screenshots
+<br>
 Screenshot 1:-
+<br>
 <img src="src/icon/everything.png" alt="" width="200" height="200">
-
-
-
-
+<br>
 Screenshot 2:-
-
-
+<br>
 <img src="src/icon/allinone.png" alt="" width="200" height="200">
-
-
+<br>
 🤝 Contributing
 Contributions are welcome! Here's how you can help:
 
@@ -78,8 +75,11 @@ Commit your changes (git commit -am 'Add new feature')
 Push to the branch (git push origin feature/improvement)
 Create a Pull Request
 
-📝 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+Tools and Technologies Used
+
+Programming Languages: JavaScript (Vanilla)
+Extensions Platform: Manifest V3
+
 🙏 Acknowledgments
 
 Thanks to clist.by for providing problem rating data
@@ -88,14 +88,6 @@ Special thanks to all contributors and users
 📞 Support
 
 Create an issue in the GitHub repository
-Contact: [Your Contact Information]
-Join our Discord Community for discussions
-
-🚀 Future Plans
-
-Add support for more competitive programming platforms
-Implement user statistics tracking
-Add custom tag creation
-Develop problem recommendation system
+Contact: [ksraval710@gmail.com]
 
 Made with ❤️ for the competitive programming community
