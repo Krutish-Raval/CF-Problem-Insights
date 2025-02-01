@@ -11,8 +11,6 @@ Enhance your Codeforces practice experience with this powerful browser extension
 📊 Estimated Problem Ratings
 
 Automatically fetches and displays estimated problem ratings from clist.by
-Helps you choose problems that match your current skill level
-Ratings are displayed right on the problem page for easy reference
 
 🏷️ Smart Tag Management
 
@@ -29,7 +27,7 @@ Clean interface integration with Codeforces
 
 🚀 Installation
 
-Visit the Chrome Web Store (or relevant store link)
+Visit the <a href="https://chromewebstore.google.com/detail/cf-problem-insights/jpelkcdgakhmabljokpfjjpinlmpmaki?authuser=0">Chrome Web Store</a>
 Click "Add to Chrome" (or relevant browser)
 The extension will automatically appear in your browser toolbar
 
@@ -38,7 +36,6 @@ Estimated Ratings
 
 Navigate to any Codeforces problem
 The estimated rating will automatically appear next to the problem title
-Ratings are color-coded for easy difficulty assessment
 
 Managing Tags
 
@@ -50,17 +47,21 @@ Rating Visibility
 
 Click the rating toggle button
 Choose to show or hide all ratings
-Individual ratings can be revealed separately
 
 🖥️ Screenshots
 <br>
-Screenshot 1:-
+<br>
+<h2>Screenshot 1:-</h2>
+<br>
 <br>
 <img src="src/icon/everything.png" alt="" >
 <br>
+<br>
 Screenshot 2:-
 <br>
+<br>
 <img src="src/icon/allinone.png" alt="" >
+<br>
 <br>
 🤝 Contributing
 Contributions are welcome! Here's how you can help:
