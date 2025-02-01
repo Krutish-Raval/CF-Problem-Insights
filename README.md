@@ -30,7 +30,7 @@ Clean interface integration with Codeforces
 
 Visit the <a href="https://chromewebstore.google.com/detail/cf-problem-insights/jpelkcdgakhmabljokpfjjpinlmpmaki?authuser=0">Chrome Web Store</a>
 <br>
-Click "Add to Chrome" (or relevant browser)
+Click "Add to Chrome" 
 The extension will automatically appear in your browser toolbar
 
 🔧 Usage
@@ -66,20 +66,27 @@ Screenshot 2:-
 <br>
 <br>
 🤝 Contributing
+<br>
 Contributions are welcome! Here's how you can help:
-
+<br>
 Fork the repository
+<br>
 Create a new branch (git checkout -b feature/improvement)
+<br>
 Make your changes
+<br>
 Commit your changes (git commit -am 'Add new feature')
+<br>
 Push to the branch (git push origin feature/improvement)
+<br>
 Create a Pull Request
-
+<br>
 Tools and Technologies Used
-
+<br>
 Programming Languages: JavaScript (Vanilla)
+<br>
 Extensions Platform: Manifest V3
-
+<br>
 🙏 Acknowledgments
 
 Thanks to clist.by for providing problem rating data
