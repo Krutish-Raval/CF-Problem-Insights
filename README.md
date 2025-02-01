@@ -67,7 +67,7 @@ Choose to show or hide all ratings
 <img src="src/icon/allinone.png" alt="" >
 <br>
 <br>
-<h3>🤝 Contributing<h3>
+<h3>🤝 Contributing</h3>
 <br>
 Contributions are welcome! Here's how you can help:
 <br>
@@ -83,7 +83,8 @@ Push to the branch (git push origin feature/improvement)
 <br>
 Create a Pull Request
 <br>
-Tools and Technologies Used
+<br>
+<h3>Tools and Technologies Used</h3>
 <br>
 Programming Languages: JavaScript (Vanilla)
 <br>
