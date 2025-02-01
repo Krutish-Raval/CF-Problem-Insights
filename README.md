@@ -8,6 +8,7 @@ Enhance your Codeforces practice experience with this powerful browser extension
 </div>
 <br>
 ✨ Features
+
 📊 Estimated Problem Ratings
 
 Automatically fetches and displays estimated problem ratings from clist.by
@@ -28,6 +29,7 @@ Clean interface integration with Codeforces
 🚀 Installation
 
 Visit the <a href="https://chromewebstore.google.com/detail/cf-problem-insights/jpelkcdgakhmabljokpfjjpinlmpmaki?authuser=0">Chrome Web Store</a>
+<br>
 Click "Add to Chrome" (or relevant browser)
 The extension will automatically appear in your browser toolbar
 
