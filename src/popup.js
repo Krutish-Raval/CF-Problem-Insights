@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
       tagColorPicker.value = result.tagColor || "#ced4da";
       ratingColorPicker.value = result.ratingColor || "#1e90ff";
       toggleEstimatedRating.checked = result.toggleEstimatedRatingState || false;
-      // Update the color previews
       tagColorPreview.style.backgroundColor = tagColorPicker.value;
       ratingColorPreview.style.backgroundColor = ratingColorPicker.value;
     }
@@ -87,17 +86,14 @@ document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.local.get("userHandle", (result) => {
       const userHandle = result.userHandle;
       if (userHandle) {
-        // If user handle is provided, save toggle state and reload the tab
         saveToggleStateAndReload("toggleSortTagsState", toggleSortTags.checked);
       } else {
-        // If user handle is not provided, show an alert
         alert("Please enter a valid Codeforces handle to sort tags.");
       }
     });
   });
   
   
-  // Save button logic
   saveButton.addEventListener("click", () => {
     const tagColor = tagColorPicker.value;
     const ratingColor = ratingColorPicker.value;
@@ -122,7 +118,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // Add event listeners for toggles
   toggleTags.addEventListener("change", () => {
     saveToggleStateAndReload("toggleTagsState", toggleTags.checked);
   });

@@ -16,9 +16,9 @@
     const tagElements = document.querySelectorAll(
       "div.roundbox.borderTopRound.borderBottomRound"
     );
-    // Filter out unintended elements like menus
+    
     const filteredTagElements = Array.from(tagElements).filter(
-      (tag) => tag.querySelector("span.tag-box") // Ensure it contains span elements with class 'tag-box'
+      (tag) => tag.querySelector("span.tag-box") 
     );
 
     const normalizedTagColor = normalizeColor(tagColor); // Convert tagColor to RGB
@@ -89,7 +89,7 @@
         }
       });
       // console.log("Tag Count:", tagCount);
-      // Collect tags visible on the page
+
       const tagElements = document.querySelectorAll("span.tag-box");
       const tagDataOnPage = Array.from(tagElements).map((tagElement) => {
         const tagText = tagElement.textContent.trim();
@@ -138,7 +138,8 @@
             parent.style.backgroundColor = originalBackgroundColor;
             parent.style.userSelect = "";
             parent.style.color = "black";
-          } else {
+          } 
+          else {
             parent.style.backgroundColor = normalizedRatingColor;
             parent.style.userSelect = "none";
             parent.style.color = normalizedRatingColor;
@@ -196,14 +197,12 @@
       );
 
       const tagsContainer = document.querySelector(
-        "div.roundbox.sidebox.sidebar-menu.borderTopRound"
+        "div.roundbox.sidebox.sidebar-menu.borderToxRound"
       );
 
       if (tagsContainer) {
-        // Create a new div element to hold the estimated rating and button
-        let ratingDiv = tagsContainer.previousElementSibling; // Check if there's an element before the tags container
+        let ratingDiv = tagsContainer.previousElementSibling; 
 
-        // If it doesn't exist or doesn't have the correct class, create a new one
         if (
           !ratingDiv ||
           !ratingDiv.classList.contains("estimated-rating-container")
@@ -230,7 +229,6 @@
           position: relative; 
          */
 
-        // Create the toggle button
         const toggleButton = document.createElement("button");
         toggleButton.innerHTML =
           "→ <span class='rating-text'>Estimated Rating</span>";
@@ -254,7 +252,6 @@
           ratingText.style.textDecoration = "none";
         });
 
-        // Create the rating text container
         const ratingTextContainer = document.createElement("div");
         ratingTextContainer.style.marginLeft = "10px";
         ratingTextContainer.style.overflow = "hidden";
@@ -262,7 +259,6 @@
         ratingTextContainer.style.maxWidth = "0";
         ratingTextContainer.style.whiteSpace = "nowrap";
         
-        // Create the rating text
         const ratingText = document.createElement("span");
         ratingText.textContent = `: ${estimatedRating}`;
         ratingText.style.color = "#3b5998";
@@ -273,13 +269,11 @@
         
         ratingTextContainer.appendChild(ratingText);
 
-        // Add click event to toggle visibility of the rating
         toggleButton.addEventListener("click", () => {
           const isHidden = ratingTextContainer.style.maxWidth === "0px";
           ratingTextContainer.style.maxWidth = isHidden ? "150px" : "0px";
         });
 
-        // Clear any existing content in the container and append the new elements
         ratingDiv.innerHTML = "";
         ratingDiv.appendChild(toggleButton);
         ratingDiv.appendChild(ratingTextContainer);
@@ -300,11 +294,9 @@
         clistNote.target = "_blank"; // Open in a new tab
         clistNote.cursor ="pointer";
         clistNote.style.marginTop = "15px";
-        // Ensure the parent container is positioned relative
+        
         ratingDiv.style.position = "relative";
 
-        // Append the note to the container
-        // ratingDiv.appendChild(clistNote);
 
         ratingDiv.appendChild(clistNote);
       }
@@ -329,7 +321,7 @@
       } else if (type === "SORT_TAGS") {
         sortTags(userHandle);
       } else if (type === "ESTIMATED_RATING") {
-        console.log("Contest ID:", contestID, "Index:", index); // Debugging log
+        console.log("Contest ID:", contestID, "Index:", index); 
         estimatedRatingFunc(contestID, index);
       }
     });
