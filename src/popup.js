@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Save settings when toggles are updated
   let check;
   saveUserHandleButton.addEventListener("click", async () => {
-    const userHandle = userHandleInput.value.trim(); // Get the value of the user handle
+    const userHandle = userHandleInput.value.trim(); 
     const apiUrl = `https://codeforces.com/api/user.info?handles=${userHandle}&checkHistoricHandles=false`;
     const response = await fetch(apiUrl);
     const ifUserHandleExist = await response.json();
@@ -66,15 +66,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     );
   });
-  // document.getElementById('tag-color-picker').addEventListener('change', function() {
-  //   var color = this.value;
-  //   document.getElementById('tag-color-preview').style.backgroundColor = color;
-  // });
-  
-  // document.getElementById('rating-color-picker').addEventListener('change', function() {
-  //   var color = this.value;
-  //   document.getElementById('rating-color-preview').style.backgroundColor = color;
-  // });
   
   tagColorPicker.addEventListener("change", () =>
     updatePreviewColor(tagColorPicker, tagColorPreview)
