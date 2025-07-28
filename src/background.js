@@ -1,12 +1,12 @@
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.local.set({
-    toggleTagsState: true, // Default: Hide Problem Tags
-    toggleRatingState: true, // Default: Hide Problem Ratings
-    toggleSortTagsState: false, // Default: Sort Problem Tags
-    toggleEstimatedRatingState: true, // Default: Enable Estimated Problem Rating
+    toggleTagsState: true,   // Default Setting
+    toggleRatingState: true,
+    toggleSortTagsState: false, 
+    toggleEstimatedRatingState: true,
     tagColor: "#a3a3a3", 
     ratingColor: "#3B5998", 
-    userHandle: "" // Default: No user handle set
+    userHandle: ""
   }, () => {
     console.log("Default settings have been initialized.");
   });
