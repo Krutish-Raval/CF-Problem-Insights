@@ -9,9 +9,9 @@
 }
 
 #popup-container {
-  padding: 16px; /* Reduced padding for a compact look */
+  padding: 16px; 
   background-color: #252525;
-  border-radius: 8px; /* Slightly reduced rounding */
+  border-radius: 8px; 
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
 }
 
@@ -105,7 +105,7 @@ input:checked + .slider:before {
   transform: translateX(20px);
 }
 span {
-  word-break: break-word; /* Prevents overflow from long text */
+  word-break: break-word; 
 }
 .color-picker {
   margin-bottom: 15px;
@@ -157,19 +157,18 @@ button:hover {
 #extension-header {
   display: flex;
   align-items: center;
-  justify-content: center; /* Aligns content in the middle */
-  gap: 12px; /* Adjusted gap for balance */
-  margin-bottom: 12px; /* Slightly more space for better layout */
+  justify-content: center;  
+  gap: 12px; 
+  margin-bottom: 12px; 
 }
 
 #extension-icon {
-  width: 35px; /* Adjusted size to match title font size */
-  height: 30px; /* Keep it square */
-  /* border-radius: 8px; /* Consistent rounding */
+  width: 35px; 
+  height: 30px;
 } 
 
 #extension-title {
-  font-size: 25px; /* Larger font to align with the image size */
+  font-size: 25px;
   font-weight: bold;
   color: #f0f0f0;
   margin: 0;
@@ -180,13 +179,12 @@ button:hover {
 hr {
   border: none;
   border-top: 1px solid #444;
-  margin: 8px 0; /* Reduced margin */
+  margin: 8px 0; 
 }
 .inline-labels {
   display: flex;
   align-items: center;
    /* Space between "Enable Estimated Problem Rating" and "(CLIST)" */
-
 }
 
 
