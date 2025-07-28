@@ -59,12 +59,9 @@
     console.log("User Handle:", userHandle);
     
     const apiUrl = `https://codeforces.com/api/user.status?handle=${userHandle}`;
-    // console.log("API URL:", apiUrl);
     try {
-      // console.log("Fetching data from Codeforces API...");
       const response = await fetch(apiUrl);
       const data = await response.json();
-      // console.log("Data:", data);
       if (data.status !== "OK") {
         console.error("Failed to fetch data from Codeforces API.");
         return;
@@ -72,13 +69,11 @@
 
       const submissions = data.result;
       const tagCount = {};
-      // console.log("Submissions:", submissions);
       // Count occurrences of each tag in solved problems
       const uniqueId = new Set();
       submissions.forEach((submission) => {
         if (submission.verdict === "OK" && submission.problem.tags) {
           const problemId = `${submission.problem.contestId}${submission.problem.index}`;
-          // console.log(uniqueId.has(problemId));
           if (!uniqueId.has(problemId)) {
             uniqueId.add(problemId);
 
@@ -88,8 +83,6 @@
           }
         }
       });
-      // console.log("Tag Count:", tagCount);
-
       const tagElements = document.querySelectorAll("span.tag-box");
       const tagDataOnPage = Array.from(tagElements).map((tagElement) => {
         const tagText = tagElement.textContent.trim();
@@ -100,7 +93,6 @@
         };
       });
 
-      // console.log("Tag Data on Page Before Sorting:", tagDataOnPage);
       const sortedTags = tagDataOnPage.sort((a, b) => b.count - a.count);
       let i = 0;
       tagElements.forEach((tagElement) => {
@@ -189,8 +181,6 @@
   const estimatedRatingFunc = async (contestID, index) => {
     try {
       const ratings = await fetchRatingFromClist(contestID, index);
-      // if (ratings != null) {
-      // const problemIndex = index.charCodeAt(0) - 65;
       const estimatedRating = ratings || "N/A";
       console.log(
         `Estimated Rating for problem ${contestID}${index}: ${estimatedRating}`
@@ -282,16 +272,16 @@
 
         // Styling the note
         clistNote.style.position = "absolute"; // Position relative to the parent container
-        clistNote.style.bottom = "5px"; // Position 5px from the bottom
-        clistNote.style.right = "10px"; // Position 10px from the right
-        clistNote.style.color = "#777"; // Subtle gray color for text
-        clistNote.style.fontSize = "0.8rem"; // Small font size
-        clistNote.style.fontFamily = "verdana, arial, sans-serif"; // Less bold font family
-        clistNote.style.fontWeight = "normal"; // Reduce boldness
-        clistNote.style.textDecoration = "none"; // Remove underlining
-        clistNote.style.pointerEvents = "auto"; // Allow interaction with the link
+        clistNote.style.bottom = "5px"; 
+        clistNote.style.right = "10px"; 
+        clistNote.style.color = "#777"; 
+        clistNote.style.fontSize = "0.8rem"; 
+        clistNote.style.fontFamily = "verdana, arial, sans-serif"; /
+        clistNote.style.fontWeight = "normal"; 
+        clistNote.style.textDecoration = "none"; 
+        clistNote.style.pointerEvents = "auto"; 
         clistNote.href = `https://clist.by/problems/?search=${contestID}&resource=1`; // Corrected URL
-        clistNote.target = "_blank"; // Open in a new tab
+        clistNote.target = "_blank"; 
         clistNote.cursor ="pointer";
         clistNote.style.marginTop = "15px";
         
@@ -300,10 +290,6 @@
 
         ratingDiv.appendChild(clistNote);
       }
-
-      // else {
-      //   console.warn(`No ratings found for problem ${contestID}${index}`);
-      // }
     } catch (error) {
       console.error("Error in estimatedRating:", error);
     }
